@@ -1,13 +1,14 @@
 version: 2.0
 jobs:
-  build_gcc_6:
+  build_clang:
     docker:
-      - image: gcc:6
+      - image: ethanlmiller/clang7python3classes
     steps:
       - checkout
       # - run: mkdir -p build && cd build
-      - run: g++ -o main main.cpp -std=c++14
+      - run: clang -o main main.cpp
       - run: ./main
+
   build_okannen_gcc_latest:
     docker:
       - image: okannen/gcc-10
@@ -21,5 +22,5 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build_gcc_6
+      - build_clang
       - build_okannen_gcc_latest
