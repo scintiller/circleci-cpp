@@ -6,9 +6,8 @@ jobs:
     steps:
       - checkout
       # - run: mkdir -p build && cd build
-      - run: clang -o main main.cpp
+      - run: clang++ -o main main.cpp -std=c++14
       - run: ./main
-
   build_okannen_gcc_latest:
     docker:
       - image: okannen/gcc-10
