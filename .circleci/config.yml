@@ -8,7 +8,7 @@ jobs:
       # - run: mkdir -p build && cd build
       - run: g++ -o main main.cpp -std=c++14
       - run: ./main
-  build_gcc_latest:
+  build:
     docker:
       - image: gcc:latest
     steps:
