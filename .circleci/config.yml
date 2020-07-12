@@ -7,7 +7,10 @@ jobs:
       - checkout
       # - run: mkdir -p build && cd build
       - run: clang++ -o main main.cpp -std=c++14
-      - run: ./main
+      - run: LLVM_PROFILE_FILE="foo.profraw" ./main
+      - run: llvm-profdata merge -sparse foo.profraw -o foo.profdata
+      - run: llvm-cov show ./foo -instr-profile=foo.profdata
+
   build_okannen_gcc_latest:
     docker:
       - image: okannen/gcc-10
